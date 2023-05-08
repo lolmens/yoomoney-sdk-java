@@ -24,7 +24,6 @@
 
 package com.yoo.money.api;
 
-import com.google.gson.Gson;
 import com.yoo.money.api.model.AllowedMoneySource;
 import com.yoo.money.api.model.showcase.Showcase;
 import com.yoo.money.api.typeadapters.TypeAdapter;
@@ -51,7 +50,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.fail;
 
 /**
- * Checks {@link com.yoo.money.api.model.showcase.components.Component}'s {@link Gson} type
+ * Checks {@link com.yoo.money.api.model.showcase.components.Component}'s  type
  * adapters.
  *
  * @author Anton Ermak (support@yoomoney.ru)

@@ -24,6 +24,7 @@
 
 package com.yoo.money.api;
 
+
 import com.google.gson.Gson;
 import com.google.gson.JsonParser;
 import com.yoo.money.api.methods.InstanceId;

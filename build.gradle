@@ -1,45 +1,29 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.novoda:bintray-release:0.5.0'
-    }
+plugins {
+    id "java"
 }
 
-apply plugin: 'java'
-apply plugin: 'bintray-release'
-
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
-    mavenCentral()
+    //mavenCentral()
+    jcenter()
 }
 
 dependencies {
-    def okhttpVersion = "3.10.0" // http://square.github.io/okhttp/
+    def okhttpVersion = "4.10.0" // http://square.github.io/okhttp/
 
-    compile "com.squareup.okhttp3:okhttp:$okhttpVersion"
-    compile "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
-    compile 'com.google.code.gson:gson:2.8.4' // https://github.com/google/gson/releases
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+    implementation 'com.google.code.gson:gson:2.10.1' // https://github.com/google/gson/releases
 
-    testCompile 'org.testng:testng:6.10' // http://testng.org/doc/download.html
-    testCompile "com.squareup.okhttp3:mockwebserver:$okhttpVersion"
+    testCompileOnly 'org.testng:testng:7.5' // http://testng.org/doc/download.html
+    testCompileOnly "com.squareup.okhttp3:mockwebserver:$okhttpVersion"
 }
 
 compileTestJava {
     options.encoding = 'UTF-8'
 }
 
-publish {
-    userOrg = 'yoomoney'
-    groupId = 'com.yoo.money.api'
-    artifactId = 'yoomoney-sdk-java'
-    version = '7.2.23'
-    website = 'https://github.com/yoomoney/yoomoney-sdk-java'
-    issueTracker = "${website}/issues"
-    repository = "${website}.git"
-}
 
 test.useTestNG()
