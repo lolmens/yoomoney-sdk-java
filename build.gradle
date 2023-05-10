@@ -11,19 +11,23 @@ repositories {
 }
 
 dependencies {
-    def okhttpVersion = "4.10.0" // http://square.github.io/okhttp/
+    def okhttpVersion = "4.9.3" // http://square.github.io/okhttp/
 
     implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
     implementation 'com.google.code.gson:gson:2.10.1' // https://github.com/google/gson/releases
 
-    testCompileOnly 'org.testng:testng:7.5' // http://testng.org/doc/download.html
-    testCompileOnly "com.squareup.okhttp3:mockwebserver:$okhttpVersion"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttpVersion"
+//    testImplementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
+
 
 compileTestJava {
     options.encoding = 'UTF-8'
 }
 
-
-test.useTestNG()
+test {
+    useJUnitPlatform()
+}
