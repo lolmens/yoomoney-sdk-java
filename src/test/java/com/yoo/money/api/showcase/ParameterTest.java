@@ -26,8 +26,8 @@ package com.yoo.money.api.showcase;
 
 import com.yoo.money.api.model.showcase.components.Parameter;
 import com.yoo.money.api.model.showcase.components.uicontrols.ParameterControl;
-import org.testng.Assert;
-
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 abstract class ParameterTest {
 
     static void prepareParameter(ParameterControl.Builder builder) {
@@ -39,10 +39,10 @@ abstract class ParameterTest {
     }
 
     static void testEmptyValues(ParameterControl.Builder builder) {
-        Assert.assertFalse(builder.create().isValid(null));
-        Assert.assertFalse(builder.create().isValid(""));
+        assertFalse(builder.create().isValid(null));
+        assertFalse(builder.create().isValid(""));
         builder.setRequired(false);
-        Assert.assertTrue(builder.create().isValid(null));
-        Assert.assertTrue(builder.create().isValid(""));
+        assertTrue(builder.create().isValid(null));
+        assertTrue(builder.create().isValid(""));
     }
 }

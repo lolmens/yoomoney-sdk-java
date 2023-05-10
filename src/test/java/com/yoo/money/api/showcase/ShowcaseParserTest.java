@@ -54,7 +54,6 @@ import com.yoo.money.api.model.showcase.components.uicontrols.TextArea;
 import com.yoo.money.api.net.clients.ApiClient;
 import com.yoo.money.api.time.DateTime;
 import com.yoo.money.api.typeadapters.model.showcase.ShowcaseTypeAdapter;
-import org.testng.annotations.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -63,11 +62,8 @@ import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertNull;
-import static org.testng.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Slava Yasevich (support@yoomoney.ru)

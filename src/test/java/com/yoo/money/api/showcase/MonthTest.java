@@ -25,12 +25,10 @@
 package com.yoo.money.api.showcase;
 
 import com.yoo.money.api.model.showcase.components.uicontrols.Date;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import java.text.ParseException;
 
-import static org.testng.Assert.assertTrue;
 
 /**
  * @author Slava Yasevich (support@yoomoney.ru)
@@ -49,9 +47,9 @@ public class MonthTest extends ParameterTest {
         assertTrue(date.isValid("2000-01-01"));
         assertTrue(date.isValid("2010-01-01"));
         assertTrue(date.isValid("2005-01-01"));
-        Assert.assertFalse(date.isValid("1999-12-31"));
-        Assert.assertFalse(date.isValid("2010-01-02"));
-        Assert.assertFalse(date.isValid("not a date"));
+        assertFalse(date.isValid("1999-12-31"));
+        assertFalse(date.isValid("2010-01-02"));
+        assertFalse(date.isValid("not a date"));
 
         testEmptyValues(builder);
     }

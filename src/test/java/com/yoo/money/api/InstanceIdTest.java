@@ -27,36 +27,44 @@ package com.yoo.money.api;
 import com.yoo.money.api.methods.InstanceId;
 import com.yoo.money.api.model.Error;
 import com.yoo.money.api.model.SimpleStatus;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
  */
 public class InstanceIdTest {
 
-    @Test(expectedExceptions = NullPointerException.class)
+    @Test
     public void testRequestClientIdNull() {
-        new InstanceId.Request(null);
+        Assertions.assertThrows(NullPointerException.class,()->
+        {
+            new InstanceId.Request(null);
+        });
+        
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test
     public void testRequestClientIdEmpty() {
-        new InstanceId.Request("");
+        Assertions.assertThrows(IllegalArgumentException.class,()->
+        {
+            new InstanceId.Request("");
+        });
     }
 
-    @Test()
+    @Test
     public void testRequestClient() {
         InstanceId.Request request = new InstanceId.Request(" ");
-        Assert.assertNotNull(request);
+        assertNotNull(request);
     }
 
     @Test
     public void testIsSuccess() {
         InstanceId instanceId = new InstanceId(SimpleStatus.SUCCESS, null, "id");
-        Assert.assertTrue(instanceId.isSuccessful());
+        assertTrue(instanceId.isSuccessful());
 
         instanceId = new InstanceId(SimpleStatus.REFUSED, Error.UNKNOWN, null);
-        Assert.assertFalse(instanceId.isSuccessful());
+        assertFalse(instanceId.isSuccessful());
     }
 }

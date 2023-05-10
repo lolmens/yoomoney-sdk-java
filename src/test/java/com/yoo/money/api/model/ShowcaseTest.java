@@ -27,14 +27,12 @@ package com.yoo.money.api.model;
 import com.yoo.money.api.Resources;
 import com.yoo.money.api.model.showcase.Showcase;
 import com.yoo.money.api.typeadapters.model.showcase.ShowcaseTypeAdapter;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.util.Map;
 
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ShowcaseTest {
 

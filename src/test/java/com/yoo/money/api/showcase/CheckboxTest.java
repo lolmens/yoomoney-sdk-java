@@ -25,8 +25,8 @@
 package com.yoo.money.api.showcase;
 
 import com.yoo.money.api.model.showcase.components.uicontrols.Checkbox;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Slava Yasevich (support@yoomoney.ru)
@@ -38,7 +38,7 @@ public class CheckboxTest extends ParameterTest {
         Checkbox.Builder builder = new Checkbox.Builder();
         prepareParameter(builder);
 
-        Assert.assertFalse(builder.create().isValid(""));
+        assertFalse(builder.create().isValid(""));
     }
 
     @Test
@@ -46,6 +46,6 @@ public class CheckboxTest extends ParameterTest {
         Checkbox.Builder builder = new Checkbox.Builder();
         prepareParameter(builder);
 
-        Assert.assertTrue(builder.setChecked(true).create().isValid(""));
+        assertTrue(builder.setChecked(true).create().isValid(""));
     }
 }

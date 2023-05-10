@@ -44,14 +44,12 @@ import com.yoo.money.api.typeadapters.GsonProvider;
 import com.yoo.money.api.typeadapters.TypeAdapter;
 import com.yoo.money.api.typeadapters.model.showcase.ShowcaseTypeAdapter;
 
-import org.testng.annotations.Test;
 
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotEquals;
-import static org.testng.Assert.fail;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Slava Yasevich (support@yoomoney.ru)

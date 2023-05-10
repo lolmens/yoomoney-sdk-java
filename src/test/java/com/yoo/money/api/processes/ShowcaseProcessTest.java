@@ -36,11 +36,13 @@ import com.yoo.money.api.net.ApiRequest;
 import com.yoo.money.api.net.clients.ApiClient;
 import com.yoo.money.api.time.DateTime;
 import com.yoo.money.api.typeadapters.model.showcase.ShowcaseTypeAdapter;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.Stack;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Bundle of tests for proving that ShowcaseProcess proceed* and back methods
@@ -48,7 +50,7 @@ import java.util.Stack;
  *
  * @author Anton Ermak (support@yoomoney.ru)
  */
-public final class ShowcaseProcessTest extends Assert {
+public final class ShowcaseProcessTest {
 
     private static final String BILLS_SECOND_STEP_URL = "https://yoomoney" +
             ".ru/api/showcase/validate/5551/step_INN_3038";

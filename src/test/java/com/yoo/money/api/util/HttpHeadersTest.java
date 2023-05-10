@@ -25,14 +25,14 @@
 package com.yoo.money.api.util;
 
 import com.yoo.money.api.time.DateTime;
-import org.testng.annotations.Test;
 
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
-import static org.testng.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class HttpHeadersTest {
 

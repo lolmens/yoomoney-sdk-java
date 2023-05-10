@@ -26,7 +26,7 @@ package com.yoo.money.api.authorization;
 
 import com.yoo.money.api.model.Scope;
 import com.yoo.money.api.util.UrlEncodedUtils;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
@@ -36,9 +36,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public final class AuthorizationParametersTest {
 

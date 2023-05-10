@@ -25,12 +25,8 @@
 package com.yoo.money.api.showcase;
 
 import com.yoo.money.api.model.showcase.components.uicontrols.Select;
-import org.testng.annotations.Test;
-
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNull;
-import static org.testng.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SelectTest extends ParameterTest {
 

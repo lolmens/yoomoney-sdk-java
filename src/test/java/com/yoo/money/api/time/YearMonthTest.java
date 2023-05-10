@@ -24,11 +24,13 @@
 
 package com.yoo.money.api.time;
 
-import org.testng.annotations.Test;
+import com.yoo.money.api.methods.payment.params.P2pTransferParams;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class YearMonthTest {
 
@@ -54,19 +56,28 @@ public class YearMonthTest {
         }
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test
     public void testIllegalYear() {
-        new YearMonth(-1, 0);
+        Assertions.assertThrows(IllegalArgumentException.class,()->
+        {
+            new YearMonth(-1, 0);
+        });
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test
     public void testIllegalMonth() {
-        new YearMonth(2000, 13);
+        Assertions.assertThrows(IllegalArgumentException.class,()->
+        {
+            new YearMonth(2000, 13);
+        });
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test
     public void testIllegalMonthNegative() {
-        new YearMonth(2000, -1);
+        Assertions.assertThrows(IllegalArgumentException.class,()->
+        {
+            new YearMonth(2000, -1);
+        });
     }
 
     private void testParsing(int year, int month) {

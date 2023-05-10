@@ -28,8 +28,8 @@ import com.yoo.money.api.exceptions.IllegalAmountException;
 import com.yoo.money.api.model.showcase.AmountType;
 import com.yoo.money.api.model.showcase.DefaultFee;
 import com.yoo.money.api.model.showcase.Fee;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 
@@ -41,16 +41,16 @@ public final class FeeTest {
                 null, AmountType.AMOUNT);
         // 15.01 is minimum amount
         try {
-            Assert.assertEquals(fee.netAmount(new BigDecimal("15.00")), new BigDecimal("0.01"));
-            Assert.assertTrue(false, "Test failed.");
+            assertEquals(fee.netAmount(new BigDecimal("15.00")), new BigDecimal("0.01"));
+            assertTrue(false, "Test failed.");
         } catch (IllegalAmountException e) {
-            Assert.assertEquals(e.minimumAmount, new BigDecimal("15.01"));
+            assertEquals(e.minimumAmount, new BigDecimal("15.01"));
         }
         try {
-            Assert.assertEquals(fee.netAmount(new BigDecimal("0.02")), new BigDecimal("0.01"));
-            Assert.assertTrue(false, "Test failed.");
+            assertEquals(fee.netAmount(new BigDecimal("0.02")), new BigDecimal("0.01"));
+            assertTrue(false, "Test failed.");
         } catch (IllegalAmountException e) {
-            Assert.assertEquals(e.minimumAmount, new BigDecimal("15.01"));
+            assertEquals(e.minimumAmount, new BigDecimal("15.01"));
         }
     }
 
@@ -58,9 +58,9 @@ public final class FeeTest {
     public void testMinimalNetAmount() throws IllegalAmountException {
         final Fee fee = new DefaultFee(Fee.Type.STD, new BigDecimal("0.03"), new BigDecimal("15.00"), BigDecimal.ZERO,
                 null, AmountType.AMOUNT);
-        Assert.assertEquals(fee.amount(new BigDecimal("0.05")), new BigDecimal("15.05"));
-        Assert.assertEquals(fee.netAmount(new BigDecimal("15.46")), new BigDecimal("0.45"));
-        Assert.assertEquals(fee.netAmount(new BigDecimal("15.01")), new BigDecimal("0.01"));
+        assertEquals(fee.amount(new BigDecimal("0.05")), new BigDecimal("15.05"));
+        assertEquals(fee.netAmount(new BigDecimal("15.46")), new BigDecimal("0.45"));
+        assertEquals(fee.netAmount(new BigDecimal("15.01")), new BigDecimal("0.01"));
     }
 
     @Test
@@ -68,8 +68,8 @@ public final class FeeTest {
         final BigDecimal amount = new BigDecimal("0.099");
         final Fee fee = new DefaultFee(Fee.Type.STD, BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO, null,
                 AmountType.AMOUNT);
-        Assert.assertEquals(amount, fee.amount(amount));
-        Assert.assertEquals(amount, fee.netAmount(amount));
+        assertEquals(amount, fee.amount(amount));
+        assertEquals(amount, fee.netAmount(amount));
     }
 
     @Test
@@ -135,17 +135,17 @@ public final class FeeTest {
         test("1000.00", "995.02", fee);
         test("1010.06", "1005.03", fee);
         test("999.98", "995.00", fee);
-        Assert.assertEquals(fee.netAmount(new BigDecimal("3.01")), new BigDecimal("3.00"));
-        Assert.assertEquals(fee.netAmount(new BigDecimal("1005.03")), new BigDecimal("1000.03"));
-        Assert.assertEquals(fee.amount(new BigDecimal("1005.00")), new BigDecimal("1010.03"));
-        Assert.assertEquals(fee.amount(new BigDecimal("995.00")), new BigDecimal("999.98"));
-        Assert.assertEquals(fee.netAmount(new BigDecimal("999.97")), new BigDecimal("995.00"));
+        assertEquals(fee.netAmount(new BigDecimal("3.01")), new BigDecimal("3.00"));
+        assertEquals(fee.netAmount(new BigDecimal("1005.03")), new BigDecimal("1000.03"));
+        assertEquals(fee.amount(new BigDecimal("1005.00")), new BigDecimal("1010.03"));
+        assertEquals(fee.amount(new BigDecimal("995.00")), new BigDecimal("999.98"));
+        assertEquals(fee.netAmount(new BigDecimal("999.97")), new BigDecimal("995.00"));
     }
 
     private void test(String amount, String netAmount, Fee fee) throws IllegalAmountException {
         BigDecimal bAmount = new BigDecimal(amount);
         BigDecimal bNetAmount = new BigDecimal(netAmount);
-        Assert.assertEquals(fee.amount(bNetAmount), bAmount);
-        Assert.assertEquals(fee.netAmount(bAmount), bNetAmount);
+        assertEquals(fee.amount(bNetAmount), bAmount);
+        assertEquals(fee.netAmount(bAmount), bNetAmount);
     }
 }

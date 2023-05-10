@@ -27,13 +27,13 @@ package com.yoo.money.api.showcase;
 import com.yoo.money.api.model.showcase.components.uicontrols.Date;
 import com.yoo.money.api.time.DateTime;
 import com.yoo.money.api.time.Years;
-import org.testng.annotations.Test;
 
 import java.text.ParseException;
 
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Slava Yasevich (support@yoomoney.ru)
@@ -82,9 +82,13 @@ public class DateTest extends ParameterTest {
         compare(withPeriod, now);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test
     public void testWrongPeriod() throws ParseException {
-        Date.parseDate("2000-01-01/2001-01-01", Date.FORMATTER);
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
+        {
+            Date.parseDate("2000-01-01/2001-01-01", Date.FORMATTER);
+        });
+
     }
 
     private static void compare(DateTime actual, DateTime expected) {

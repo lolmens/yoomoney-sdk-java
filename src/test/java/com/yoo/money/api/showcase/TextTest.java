@@ -25,8 +25,10 @@
 package com.yoo.money.api.showcase;
 
 import com.yoo.money.api.model.showcase.components.uicontrols.Text;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author Slava Yasevich (support@yoomoney.ru)
@@ -39,20 +41,20 @@ public class TextTest extends ParameterTest {
         prepareParameter(builder);
 
         Text text = builder.create();
-        Assert.assertTrue(text.isValid("some random string, no constraints"));
-        Assert.assertFalse(text.isValid("some random string\nno constraints"));
+        assertTrue(text.isValid("some random string, no constraints"));
+        assertFalse(text.isValid("some random string\nno constraints"));
 
         builder.setPattern("\\d*?")
                 .setMinLength(3)
                 .setMaxLength(5);
 
         text = builder.create();
-        Assert.assertTrue(text.isValid("123"));
-        Assert.assertTrue(text.isValid("1234"));
-        Assert.assertTrue(text.isValid("12345"));
-        Assert.assertFalse(text.isValid("abc"));
-        Assert.assertFalse(text.isValid("12"));
-        Assert.assertFalse(text.isValid("123456"));
+        assertTrue(text.isValid("123"));
+        assertTrue(text.isValid("1234"));
+        assertTrue(text.isValid("12345"));
+        assertFalse(text.isValid("abc"));
+        assertFalse(text.isValid("12"));
+        assertFalse(text.isValid("123456"));
 
         testEmptyValues(builder);
     }

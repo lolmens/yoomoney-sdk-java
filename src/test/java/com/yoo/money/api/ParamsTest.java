@@ -24,10 +24,12 @@
 
 package com.yoo.money.api;
 
+import com.yoo.money.api.methods.InstanceId;
 import com.yoo.money.api.methods.payment.params.P2pTransferParams;
 import com.yoo.money.api.methods.payment.params.PhoneParams;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -44,9 +46,12 @@ public final class ParamsTest {
     /**
      * Tests that {@code amount} or {@code amount_due} is required.
      */
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test
     public void testP2pTransferParamsBuilderException() {
-        new P2pTransferParams.Builder(accountNumber).create();
+        Assertions.assertThrows(IllegalArgumentException.class,()->
+        {
+            new P2pTransferParams.Builder(accountNumber).create();
+        });
     }
 
     /**
@@ -56,7 +61,7 @@ public final class ParamsTest {
     public void testP2pTransferParamsBuilderCreated() {
         int requiredParamsSize = 2;
         P2pTransferParams params = createP2pBuilderRequired().create();
-        Assert.assertEquals(params.paymentParams.size(), requiredParamsSize);
+        assertEquals(params.paymentParams.size(), requiredParamsSize);
     }
 
     /**
@@ -87,7 +92,7 @@ public final class ParamsTest {
         expectedParams.put("comment", comment);
         expectedParams.put("expire_period", expirePeriod.toString());
 
-        Assert.assertEquals(params, expectedParams);
+        assertEquals(params, expectedParams);
     }
 
     /**
@@ -101,7 +106,7 @@ public final class ParamsTest {
         HashMap<String, String> expectedParams = new HashMap<>();
         expectedParams.put("phone-number", phoneNumber);
         expectedParams.put("amount", amount.toPlainString());
-        Assert.assertEquals(phoneParams.paymentParams, expectedParams);
+        assertEquals(phoneParams.paymentParams, expectedParams);
     }
 
     private static P2pTransferParams.Builder createP2pBuilderRequired() {

@@ -24,13 +24,13 @@
 
 package com.yoo.money.api.time;
 
-import org.testng.annotations.Test;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
 
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class IntervalTest {
 
@@ -43,11 +43,14 @@ public class IntervalTest {
         assertNotNull(interval.till);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test()
     public void testFromDatesIllegalArgumentException() {
-        DateTime from = DateTime.now();
-        DateTime till = DateTime.from(from.getDate().getTime() - 1234567890L);
-        new Interval(from, till);
+        Assertions.assertThrows(IllegalArgumentException.class,()->
+        {
+            DateTime from = DateTime.now();
+            DateTime till = DateTime.from(from.getDate().getTime() - 1234567890L);
+            new Interval(from, till);
+        });
     }
 
     @Test

@@ -27,8 +27,8 @@ package com.yoo.money.api;
 import com.yoo.money.api.methods.ShowcaseSearch;
 import com.yoo.money.api.net.clients.ApiClient;
 import com.yoo.money.api.typeadapters.GsonProvider;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Anton Ermak (support@yoomoney.ru)
@@ -47,7 +47,7 @@ public class ShowcaseSearchTest {
             Assert.assertTrue(showcaseSearch.result.size() > 0, "result is empty");
             Hardcoded showcases usage (such as Skype, Skynet etc.) are strictly prohibited
         **/
-        Assert.assertTrue(true);
+        assertTrue(true);
     }
 
     /**
@@ -56,7 +56,7 @@ public class ShowcaseSearchTest {
     @Test
     public void marshallingTest() throws Exception {
         String json = GsonProvider.getGson().toJson(getShowcaseSearchInstance());
-        Assert.assertTrue(!json.isEmpty(), "json should be non empty");
+        assertTrue(!json.isEmpty(), "json should be non empty");
     }
 
     private static ShowcaseSearch getShowcaseSearchInstance() throws Exception {

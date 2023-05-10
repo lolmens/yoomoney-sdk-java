@@ -1,9 +1,9 @@
 package com.yoo.money.api.showcase;
 
 import com.yoo.money.api.model.showcase.components.uicontrols.AdditionalData;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AdditionalDataTest extends ParameterTest {
 
@@ -13,7 +13,7 @@ public class AdditionalDataTest extends ParameterTest {
         prepareParameter(builder);
 
         AdditionalData additionalData = builder.create();
-        Assert.assertTrue(additionalData.isValid());
+        assertTrue(additionalData.isValid());
 
         testEmptyValues(builder);
     }

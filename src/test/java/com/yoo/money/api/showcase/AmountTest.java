@@ -25,8 +25,8 @@
 package com.yoo.money.api.showcase;
 
 import com.yoo.money.api.model.showcase.components.uicontrols.Amount;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 
@@ -48,10 +48,10 @@ public class AmountTest extends ParameterTest {
     }
 
     private void checkValues(Amount amount) {
-        Assert.assertTrue(amount.isValid("0.01"));
-        Assert.assertTrue(amount.isValid("+1000"));
-        Assert.assertFalse(amount.isValid("0.0"));
-        Assert.assertFalse(amount.isValid("1,0"));
-        Assert.assertFalse(amount.isValid("-10"));
+        assertTrue(amount.isValid("0.01"));
+        assertTrue(amount.isValid("+1000"));
+        assertFalse(amount.isValid("0.0"));
+        assertFalse(amount.isValid("1,0"));
+        assertFalse(amount.isValid("-10"));
     }
 }

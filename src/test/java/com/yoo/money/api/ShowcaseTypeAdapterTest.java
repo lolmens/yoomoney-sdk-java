@@ -42,12 +42,11 @@ import com.yoo.money.api.typeadapters.model.showcase.uicontrol.SubmitTypeAdapter
 import com.yoo.money.api.typeadapters.model.showcase.uicontrol.TelTypeAdapter;
 import com.yoo.money.api.typeadapters.model.showcase.uicontrol.TextAreaTypeAdapter;
 import com.yoo.money.api.typeadapters.model.showcase.uicontrol.TextTypeAdapter;
-import org.testng.annotations.Test;
 
 import java.io.FileNotFoundException;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.fail;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Checks {@link com.yoo.money.api.model.showcase.components.Component}'s  type

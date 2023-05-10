@@ -24,12 +24,14 @@
 
 package com.yoo.money.api.time;
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class PeriodTest {
 
@@ -50,13 +52,20 @@ public class PeriodTest {
         }
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test()
     public void testIllegalArgumentException() {
-        Period.parse("3Y6M1D");
+
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
+        {
+            Period.parse("3Y6M1D");
+        });
     }
 
-    @Test(expectedExceptions = UnsupportedOperationException.class)
+    @Test()
     public void testUnsupportedArgumentException() {
-        Period.parse("P3Y6M4DT12H30M5S");
+        Assertions.assertThrows(UnsupportedOperationException.class, () ->
+        {
+            Period.parse("P3Y6M4DT12H30M5S");
+        });
     }
 }

@@ -25,8 +25,8 @@
 package com.yoo.money.api.showcase;
 
 import com.yoo.money.api.model.showcase.components.uicontrols.Email;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Slava Yasevich (support@yoomoney.ru)
@@ -38,8 +38,8 @@ public class EmailTest extends ParameterTest {
         Email.Builder builder = new Email.Builder();
         prepareParameter(builder);
         Email email = builder.create();
-        Assert.assertTrue(email.isValid("support@yoomoney.ru"));
-        Assert.assertFalse(email.isValid("support@ yoomoney.ru"));
+        assertTrue(email.isValid("support@yoomoney.ru"));
+        assertFalse(email.isValid("support@ yoomoney.ru"));
 
         testEmptyValues(builder);
     }

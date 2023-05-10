@@ -42,9 +42,9 @@ import com.yoo.money.api.util.HttpHeaders;
 import com.yoo.money.api.util.MimeTypes;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.junit.BeforeClass;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -55,7 +55,7 @@ import java.util.Map;
 /**
  * @author Slava Yasevich (support@yoomoney.ru)
  */
-@Test(singleThreaded = true)
+//@Test(singleThreaded = true)
 public class PaymentProcessTest {
 
     private final MockWebServer server = new MockWebServer();
@@ -114,9 +114,9 @@ public class PaymentProcessTest {
         paymentProcess.restoreSavedState(savedState);
         BasePaymentProcess.SavedState state = paymentProcess.getSavedState();
 
-        Assert.assertEquals(savedState.getRequestPayment(), state.getRequestPayment());
-        Assert.assertEquals(savedState.getProcessPayment(), state.getProcessPayment());
-        Assert.assertEquals(savedState.getFlags(), state.getFlags());
+        assertEquals(savedState.getRequestPayment(), state.getRequestPayment());
+        assertEquals(savedState.getProcessPayment(), state.getProcessPayment());
+        assertEquals(savedState.getFlags(), state.getFlags());
     }
 
     @Test
@@ -128,9 +128,9 @@ public class PaymentProcessTest {
         paymentProcess.restoreSavedState(savedState);
         BasePaymentProcess.SavedState state = paymentProcess.getSavedState();
 
-        Assert.assertEquals(savedState.getRequestPayment(), state.getRequestPayment());
-        Assert.assertEquals(savedState.getProcessPayment(), state.getProcessPayment());
-        Assert.assertEquals(savedState.getFlags(), state.getFlags());
+        assertEquals(savedState.getRequestPayment(), state.getRequestPayment());
+        assertEquals(savedState.getProcessPayment(), state.getProcessPayment());
+        assertEquals(savedState.getFlags(), state.getFlags());
     }
 
     @Test
@@ -143,7 +143,7 @@ public class PaymentProcessTest {
         extendedPaymentProcess.restoreSavedState(savedState);
         ExtendedPaymentProcess.SavedState state = extendedPaymentProcess.getSavedState();
 
-        Assert.assertEquals(savedState.getFlags(), state.getFlags());
+        assertEquals(savedState.getFlags(), state.getFlags());
     }
 
     private void enqueuePaymentProcess() {
@@ -183,8 +183,8 @@ public class PaymentProcessTest {
     }
 
     private void checkPaymentProcess(BasePaymentProcess process) throws Exception {
-        Assert.assertFalse(process.proceed());
-        Assert.assertTrue(process.proceed());
+        assertFalse(process.proceed());
+        assertTrue(process.proceed());
     }
 
     private synchronized void checkAsyncPaymentProcess(BasePaymentProcess process)

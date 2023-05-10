@@ -24,11 +24,7 @@
 
 package com.yoo.money.api;
 
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonSerializationContext;
+import com.google.gson.*;
 import com.yoo.money.api.exceptions.InsufficientScopeException;
 import com.yoo.money.api.exceptions.InvalidRequestException;
 import com.yoo.money.api.exceptions.InvalidTokenException;
@@ -42,13 +38,15 @@ import com.yoo.money.api.util.MimeTypes;
 import okhttp3.HttpUrl;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.junit.BeforeClass;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Slava Yasevich (support@yoomoney.ru)
@@ -63,9 +61,13 @@ public class OAuth2SessionTest {
         server.start();
     }
 
-    @Test(expectedExceptions = InvalidRequestException.class)
-    public void testWrongContentType() throws Exception {
-        executeTest(createResponseBase(), createRequest(true));
+    @Test
+    public void testWrongContentType() {
+        Assertions.assertThrows(InvalidRequestException.class,()->
+        {
+            executeTest(createResponseBase(), createRequest(true));
+        });
+
     }
 
     @Test
@@ -84,21 +86,33 @@ public class OAuth2SessionTest {
                 createRequest(true));
     }
 
-    @Test(expectedExceptions = InvalidRequestException.class)
+    @Test
     public void testInvalidBadRequest() throws Exception {
-        executeTest(createResponseBase().setResponseCode(HttpURLConnection.HTTP_BAD_REQUEST),
-                createRequest(true));
+        Assertions.assertThrows(InvalidRequestException.class,()->
+        {
+            executeTest(createResponseBase().setResponseCode(HttpURLConnection.HTTP_BAD_REQUEST),
+                    createRequest(true));
+        });
+
     }
 
-    @Test(expectedExceptions = InvalidTokenException.class)
+    @Test
     public void testUnauthorized() throws Exception {
-        executeTest(createResponse().setResponseCode(HttpURLConnection.HTTP_UNAUTHORIZED),
-                createRequest(true));
+        Assertions.assertThrows(InvalidTokenException.class,()->
+        {
+            executeTest(createResponse().setResponseCode(HttpURLConnection.HTTP_UNAUTHORIZED),
+                    createRequest(true));
+        });
+
     }
 
-    @Test(expectedExceptions = InsufficientScopeException.class)
+    @Test
     public void testForbidden() throws Exception {
-        executeTest(createResponse().setResponseCode(HttpURLConnection.HTTP_FORBIDDEN), createRequest(true));
+        Assertions.assertThrows(InsufficientScopeException.class,()->
+        {
+            executeTest(createResponse().setResponseCode(HttpURLConnection.HTTP_FORBIDDEN), createRequest(true));
+
+        });
     }
 
     private static MockResponse createResponse() {
@@ -122,7 +136,7 @@ public class OAuth2SessionTest {
     }
 
     private void checkResponse(Mock response) {
-        Assert.assertEquals(response.code, "ok");
+        assertEquals(response.code, "ok");
     }
 
     private static final class Mock {

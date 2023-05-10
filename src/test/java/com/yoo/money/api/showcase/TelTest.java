@@ -25,8 +25,8 @@
 package com.yoo.money.api.showcase;
 
 import com.yoo.money.api.model.showcase.components.uicontrols.Tel;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Slava Yasevich (support@yoomoney.ru)
@@ -38,10 +38,10 @@ public class TelTest extends ParameterTest {
         Tel.Builder builder = new Tel.Builder();
         prepareParameter(builder);
         Tel tel = builder.create();
-        Assert.assertTrue(tel.isValid("+79876543210"));
-        Assert.assertTrue(tel.isValid("89876543210"));
-        Assert.assertTrue(tel.isValid("+7 (987) 654-32-10"));
-        Assert.assertFalse(tel.isValid("no tel"));
+        assertTrue(tel.isValid("+79876543210"));
+        assertTrue(tel.isValid("89876543210"));
+        assertTrue(tel.isValid("+7 (987) 654-32-10"));
+        assertFalse(tel.isValid("no tel"));
 
         testEmptyValues(builder);
     }
